@@ -49,6 +49,7 @@ typedef enum {
 
 /* Structures */
     GARTA__TYPE__ARRAY,
+    GARTA__TYPE__LINKED_LIST
 /* Complex Types */
 
 } gArta_Type;
@@ -137,7 +138,8 @@ const gArta_Type_Strings gArta_Type_strings [] = {
     { GARTA__TYPE__TEST   , "test"    },
     { GARTA__TYPE__UNKNOWN, "unknown" },
 
-    { GARTA__TYPE__ARRAY, "array" }
+    { GARTA__TYPE__ARRAY      , "array"       },
+    { GARTA__TYPE__LINKED_LIST, "linked list" },
 }; const size_t gArta_Type_strings_capacity = sizeof(gArta_Type_strings) / sizeof(gArta_Type_Strings);
 
 ////////////////////////////////////// Function Declarations //////////////////////////////////////

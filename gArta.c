@@ -1,4 +1,4 @@
-#define FILE_TO_EXECUTE "main/gArta-Array.c"
+#define FILE_TO_EXECUTE "main/gArta-LinkedList.c"
 
 
 #if defined(FILE_TO_EXECUTE)
