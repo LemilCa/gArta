@@ -14,10 +14,11 @@ const gArta_Test gArta_tests [] = {
     &(struct gArta_Test){ 56 },
     &(struct gArta_Test){ -12 },
     NULL
-};
+}; const size_t gArta_tests_capacity = sizeof(gArta_tests) / sizeof(gArta_Test);
 
 gArta_Test gArta_Test_createDefault(void);
 gArta_Test gArta_Test_createRandom(void);
+gArta_Test gArta_Test_getRandom(void);
 
 gArta_Data gArta_Test_copy(const gArta_Data source_dt);
 gArta_Data gArta_Test_destroy(gArta_Data test_dt);
@@ -38,6 +39,12 @@ gArta_Test gArta_Test_createRandom(void)
     srand(time(NULL));
 
     return &(struct gArta_Test){ rand() % 1000 - 500 };
+}
+gArta_Test gArta_Test_getRandom(void)
+{
+    srand(time(NULL));
+
+    return gArta_tests[rand() % gArta_tests_capacity];
 }
 
 gArta_Data gArta_Test_copy(const gArta_Data source_dt)

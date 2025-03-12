@@ -1,5 +1,4 @@
 #define GARTA__IMPLEMENTATION
-#define GARTA__SIMPLER
 #include "../src/gArta.h"
 
 

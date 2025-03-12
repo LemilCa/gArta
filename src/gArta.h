@@ -13,9 +13,18 @@
     #define GARTA__MALLOC(_size_) malloc(_size_)
 #endif /* !defined(GARTA__MALLOC) */
 
+#if !defined(GARTA__CALLOC)
+    #define GARTA__CALLOC(_nmemb_, _size_) calloc(_nmemb_, _size_)
+#endif /* !defined(GARTA__CALLOC) */
+
 #if !defined(GARTA__FREE)
     #define GARTA__FREE(_ptr_) free(_ptr_)
 #endif /* !defined(GARTA__FREE) */
+
+
+#if !defined(GARTA__SIZE)
+    #define GARTA__SIZE int
+#endif /* !defined(GARTA__SIZE) */
 
 ////////////////////////////////////////////// Types //////////////////////////////////////////////
 
@@ -25,6 +34,11 @@ typedef enum {
     GARTA__ERROR__UNIMPLEMENTED = -2,
     GARTA__ERROR__UNKNOWN = -1,
     GARTA__ERROR__NONE = 0,
+
+    GARTA__ERROR__ALLOC,
+    GARTA__ERROR__PRINT,
+
+    GARTA__ERROR__OUT_OF_BOUNDS,
 } gArta_Error;
 
 typedef enum {
@@ -34,7 +48,7 @@ typedef enum {
 /* Simple Types */
 
 /* Structures */
-
+    GARTA__TYPE__ARRAY,
 /* Complex Types */
 
 } gArta_Type;
@@ -110,13 +124,20 @@ const gArta_bool_Strings gArta_bool_strings [] = {
 const gArta_Error_Strings gArta_Error_strings [] = {
     { GARTA__ERROR__UNIMPLEMENTED, "unimplemented" },
     { GARTA__ERROR__UNKNOWN      , "unknown"       },
-    { GARTA__ERROR__NONE         , "none"          }
+    { GARTA__ERROR__NONE         , "none"          },
+
+    { GARTA__ERROR__ALLOC, "alloc" },
+    { GARTA__ERROR__PRINT, "print" },
+
+    { GARTA__ERROR__OUT_OF_BOUNDS, "out of bounds" },
 }; const size_t gArta_Error_strings_capacity = sizeof(gArta_Error_strings) / sizeof(gArta_Error_Strings);
 
 
 const gArta_Type_Strings gArta_Type_strings [] = {
     { GARTA__TYPE__TEST   , "test"    },
-    { GARTA__TYPE__UNKNOWN, "unknown" }
+    { GARTA__TYPE__UNKNOWN, "unknown" },
+
+    { GARTA__TYPE__ARRAY, "array" }
 }; const size_t gArta_Type_strings_capacity = sizeof(gArta_Type_strings) / sizeof(gArta_Type_Strings);
 
 ////////////////////////////////////// Function Declarations //////////////////////////////////////
