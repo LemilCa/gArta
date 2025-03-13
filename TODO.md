@@ -1,7 +1,26 @@
+- [Addings TODO](#addings-todo)
+- [Corrections TODO](#corrections-todo)
+- [Maybe TODO](#maybe-todo)
+
+
 # Addings TODO
-- [ ] Structure Types Array, LinkedList, Stack, Queue, DoubleLinkedList, Tree, BinaryTree
-- [ ] Simple Types Integer, Boolean, Character, Floating, Complex
-- [ ] Complex Types String, BigNumber
+- [X] Structure Types
+  - [X] Array
+  - [X] LinkedList
+  - [X] Stack
+  - [ ] Queue
+  - [ ] DoubleLinkedList
+  - [ ] Tree
+  - [ ] BinaryTree
+- [ ] Simple Types
+  - [ ] Integer
+  - [ ] Boolean
+  - [ ] Character
+  - [ ] Floating
+  - [ ] Complex
+- [ ] Complex Types
+  - [ ] String
+  - [ ] BigNumber
 
 # Corrections TODO
 - [X] Add CHECK_ERROR on main/*.c to all main functions
