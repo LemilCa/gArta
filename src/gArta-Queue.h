@@ -38,7 +38,7 @@ struct gArta_Queue {
     gArta_QueueSize capacity;
     gArta_DataInfos *dataInfos_pt;
 
-    gArta_Queue nbNodes;
+    gArta_QueueSize nbNodes;
     gArta_QueueNode tail, head;
 };
 

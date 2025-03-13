@@ -8,8 +8,8 @@
   - [X] Array
   - [X] LinkedList
   - [X] Stack
-  - [ ] Queue
-  - [ ] DoubleLinkedList
+  - [X] Queue
+  - [X] DoubleLinkedList
   - [ ] Tree
   - [ ] BinaryTree
 - [ ] Simple Types
