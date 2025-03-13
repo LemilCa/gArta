@@ -53,6 +53,10 @@ gArta_LinkedList main_LinkedList_destroy(gArta_LinkedList LINKED_LIST)
     CHECK_ERROR(linkedList_destroy);
     printf("\n");
 
+    printf("\t[linkedList] ");
+    printf("%p ", (void*)(LINKED_LIST));
+    printf("\n");
+
     printf("\t> ");
     printf("%p ", (void*)(linkedList_destroy));
     printf("\n");
@@ -66,6 +70,10 @@ int main_LinkedList_print(const gArta_LinkedList LINKED_LIST)
     printf("linkedList print: ");
     int linkedList_print = gArta_LinkedList_print(LINKED_LIST);
     CHECK_ERROR(linkedList_print);
+    printf("\n");
+
+    printf("\t[linkedList] ");
+    printf("%p ", (void*)(LINKED_LIST));
     printf("\n");
 
     printf("\t> ");

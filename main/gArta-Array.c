@@ -53,6 +53,10 @@ gArta_Array main_Array_destroy(gArta_Array ARRAY)
     CHECK_ERROR(array_destroy);
     printf("\n");
 
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
+    printf("\n");
+
     printf("\t> ");
     printf("%p ", (void*)(array_destroy));
     printf("\n");
@@ -66,6 +70,10 @@ int main_Array_print(const gArta_Array ARRAY)
     printf("array print: ");
     int array_print = gArta_Array_print(ARRAY);
     CHECK_ERROR(array_print);
+    printf("\n");
+
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
     printf("\n");
 
     printf("\t> ");

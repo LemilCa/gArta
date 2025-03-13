@@ -48,8 +48,10 @@ void gArta_LinkedList_malloc(gArta_LinkedList *linkedList_pt);
 
 
 void gArta_LinkedListNode_free(gArta_LinkedListNode node, gArta_Data (*destroy_data)(gArta_Data));
+void gArta_LinkedListNodes_free(gArta_LinkedListNode node, gArta_Data (*destroy_data)(gArta_Data));
 
-void gArta_LinkedListNode_print(int *print_dt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data));
+void gArta_LinkedListNode_print(int *print_pt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data));
+void gArta_LinkedListNodes_print(int *print_pt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data));
 
 /////////////////////////////////////// Function Definitions //////////////////////////////////////
 
@@ -72,7 +74,7 @@ gArta_LinkedList gArta_LinkedList_destroy(gArta_LinkedList linkedList)
 {
     if (linkedList == NULL) { return NULL; }
 
-    gArta_LinkedListNode_free(linkedList -> first, linkedList -> dataInfos_pt -> destroy);
+    gArta_LinkedListNodes_free(linkedList -> first, linkedList -> dataInfos_pt -> destroy);
     if (!gArta_Error_global_isNone()) { return linkedList; }
     linkedList -> first = NULL;
 
@@ -94,7 +96,7 @@ int gArta_LinkedList_print(const gArta_LinkedList linkedList)
         return print_val;
     }
 
-    gArta_LinkedListNode_print(&print_tmp, linkedList -> first, linkedList -> dataInfos_pt -> print);
+    gArta_LinkedListNodes_print(&print_tmp, linkedList -> first, linkedList -> dataInfos_pt -> print);
     if (!gArta_Error_global_isNone()) { return print_tmp; }
     print_val += print_tmp;
 
@@ -114,54 +116,70 @@ void gArta_LinkedList_malloc(gArta_LinkedList *linkedList_pt)
 
 void gArta_LinkedListNode_free(gArta_LinkedListNode node, gArta_Data (*destroy_data)(gArta_Data))
 {
+    node -> data = destroy_data(node -> data);
+    if (!gArta_Error_global_isNone()) { return; }
+    
+    GARTA__FREE(node);
+
+    return;
+}
+void gArta_LinkedListNodes_free(gArta_LinkedListNode node, gArta_Data (*destroy_data)(gArta_Data))
+{
     if (node == NULL) { return; }
 
     gArta_LinkedListNode node_tmp;
     while (node != NULL) {
         node_tmp = node -> next;
 
-        node -> data = destroy_data(node -> data);
+        gArta_LinkedListNode_free(node, destroy_data);
         if (!gArta_Error_global_isNone()) { return; }
-
-        GARTA__FREE(node);
-
         node = node_tmp;
     }
 
     return;
 }
 
-void gArta_LinkedListNode_print(int *print_dt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data))
+void gArta_LinkedListNode_print(int *print_pt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data))
+{
+    int print_val = 0, print_tmp;
+
+    print_tmp = print_data(node -> data);
+    if (!gArta_Error_global_isNone()) { *print_pt = print_tmp; return; }
+    print_val += print_tmp;
+
+    *print_pt = print_val; return;
+}
+void gArta_LinkedListNodes_print(int *print_pt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data))
 {
     int print_val = 0, print_tmp;
 
     if (node == NULL) {
         print_tmp = printf("Empty");
-        if (print_tmp == EOF) { gArta_Error_global_set(GARTA__ERROR__PRINT); *print_dt = EOF; return; }
+        if (print_tmp == EOF) { gArta_Error_global_set(GARTA__ERROR__PRINT); *print_pt = EOF; return; }
         print_val += print_tmp;
 
-        *print_dt = print_val; return;
+        *print_pt = print_val; return;
     }
 
     gArta_LinkedListNode node_tmp = node;
 
-    print_tmp = print_data(node_tmp -> data);
-    if (!gArta_Error_global_isNone()) { *print_dt = print_tmp; return; }
+    gArta_LinkedListNodes_print(&print_tmp, node_tmp, print_data);
+    if (!gArta_Error_global_isNone()) { *print_pt = print_tmp; return; }
     print_val += print_tmp;
 
     node_tmp = node_tmp -> next;
 
     while (node_tmp != NULL) {
         print_tmp = printf(" -> ");
-        if (print_tmp == EOF) { gArta_Error_global_set(GARTA__ERROR__PRINT); *print_dt = EOF; return; }
+        if (print_tmp == EOF) { gArta_Error_global_set(GARTA__ERROR__PRINT); *print_pt = EOF; return; }
         print_val += print_tmp;
 
-        print_tmp = print_data(node_tmp -> data);
-        if (!gArta_Error_global_isNone()) { *print_dt = print_tmp; return; }
+        gArta_LinkedListNodes_print(&print_tmp, node_tmp, print_data);
+        if (!gArta_Error_global_isNone()) { *print_pt = print_tmp; return; }
         print_val += print_tmp;
     }
 
-    *print_dt = print_val; return;
+    *print_pt = print_val; return;
 }
 
 

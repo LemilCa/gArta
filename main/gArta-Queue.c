@@ -53,6 +53,10 @@ gArta_Queue main_Queue_destroy(gArta_Queue QUEUE)
     CHECK_ERROR(queue_destroy);
     printf("\n");
 
+    printf("\t[queue] ");
+    printf("%p ", (void*)(QUEUE));
+    printf("\n");
+
     printf("\t> ");
     printf("%p ", (void*)(queue_destroy));
     printf("\n");
@@ -66,6 +70,10 @@ int main_Queue_print(const gArta_Queue QUEUE)
     printf("queue print: ");
     int queue_print = gArta_Queue_print(QUEUE);
     CHECK_ERROR(queue_print);
+    printf("\n");
+
+    printf("\t[queue] ");
+    printf("%p ", (void*)(QUEUE));
     printf("\n");
 
     printf("\t> ");

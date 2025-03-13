@@ -44,8 +44,10 @@ void gArta_Array_malloc(gArta_Array *array_pt);
 
 
 void gArta_ArrayDatas_calloc(gArta_ArrayDatas *datas_pt, const gArta_ArraySize capacity);
+void gArta_ArrayData_free(gArta_ArrayDatas datas, const gArta_ArraySize index, gArta_Data (*destroy_data)(gArta_Data));
 void gArta_ArrayDatas_free(gArta_ArrayDatas datas, const gArta_ArraySize capacity, gArta_Data (*destroy_data)(gArta_Data));
 
+void gArta_ArrayData_print(int *print_pt, const gArta_ArrayDatas datas, const gArta_ArraySize index, int (*print_data)(const gArta_Data));
 void gArta_ArrayDatas_print(int *print_pt, const gArta_ArrayDatas datas, const gArta_ArraySize capacity, int (*print_data)(const gArta_Data));
 
 /////////////////////////////////////// Function Definitions //////////////////////////////////////
@@ -119,12 +121,19 @@ void gArta_ArrayDatas_calloc(gArta_ArrayDatas *datas_pt, const gArta_ArraySize c
 
     *datas_pt = datas; return;
 }
+void gArta_ArrayData_free(gArta_ArrayDatas datas, const gArta_ArraySize index, gArta_Data (*destroy_data)(gArta_Data))
+{
+    datas[index] = destroy_data(datas[index]);
+    if (!gArta_Error_global_isNone()) { return; }
+
+    return;
+}
 void gArta_ArrayDatas_free(gArta_ArrayDatas datas, const gArta_ArraySize capacity, gArta_Data (*destroy_data)(gArta_Data))
 {
     if (datas == NULL) { return; }
 
     for (gArta_ArraySize index = 0; index < capacity; ++ index) {
-        datas[index] = destroy_data(datas[index]);
+        gArta_ArrayData_free(datas, index, destroy_data);
         if (!gArta_Error_global_isNone()) { return; }
     }
 
@@ -133,6 +142,16 @@ void gArta_ArrayDatas_free(gArta_ArrayDatas datas, const gArta_ArraySize capacit
     return;
 }
 
+void gArta_ArrayData_print(int *print_pt, const gArta_ArrayDatas datas, const gArta_ArraySize index, int (*print_data)(const gArta_Data))
+{
+    int print_val = 0, print_tmp;
+
+    print_tmp = print_data(datas[index]);
+    if (!gArta_Error_global_isNone()) { *print_pt = print_tmp; }
+    print_val += print_tmp;
+
+    *print_pt = print_val; return;
+}
 void gArta_ArrayDatas_print(int *print_pt, const gArta_ArrayDatas datas, const gArta_ArraySize capacity, int (*print_data)(const gArta_Data))
 {
     int print_val = 0, print_tmp;
@@ -150,7 +169,7 @@ void gArta_ArrayDatas_print(int *print_pt, const gArta_ArrayDatas datas, const g
         if (print_tmp == EOF) { gArta_Error_global_set(GARTA__ERROR__PRINT); *print_pt = EOF; return; }
         print_val += print_tmp;
 
-        print_tmp = print_data(datas[index]);
+        gArta_ArrayData_print(&print_tmp, datas, index, print_data);
         if (!gArta_Error_global_isNone()) { *print_pt = print_tmp; return; }
         print_val += print_tmp;
 

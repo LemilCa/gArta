@@ -53,6 +53,10 @@ gArta_Stack main_Stack_destroy(gArta_Stack STACK)
     CHECK_ERROR(stack_destroy);
     printf("\n");
 
+    printf("\t[stack] ");
+    printf("%p ", (void*)(STACK));
+    printf("\n");
+
     printf("\t> ");
     printf("%p ", (void*)(stack_destroy));
     printf("\n");
@@ -66,6 +70,10 @@ int main_Stack_print(const gArta_Stack STACK)
     printf("stack print: ");
     int stack_print = gArta_Stack_print(STACK);
     CHECK_ERROR(stack_print);
+    printf("\n");
+
+    printf("\t[stack] ");
+    printf("%p ", (void*)(STACK));
     printf("\n");
 
     printf("\t> ");
