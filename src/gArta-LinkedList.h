@@ -38,7 +38,7 @@ struct gArta_LinkedList {
     gArta_LinkedListSize capacity;
     gArta_DataInfos *dataInfos_pt;
 
-    gArta_LinkedListSize nbDatas;
+    gArta_LinkedListSize nbNodes;
     gArta_LinkedListNode first;
 };
 
@@ -47,7 +47,6 @@ struct gArta_LinkedList {
 void gArta_LinkedList_malloc(gArta_LinkedList *linkedList_pt);
 
 
-void gArta_LinkedListNode_malloc(gArta_LinkedListNode *node_pt);
 void gArta_LinkedListNode_free(gArta_LinkedListNode node, gArta_Data (*destroy_data)(gArta_Data));
 
 void gArta_LinkedListNode_print(int *print_dt, const gArta_LinkedListNode node, int (*print_data)(const gArta_Data));
@@ -64,7 +63,7 @@ gArta_LinkedList gArta_LinkedList_create(const gArta_LinkedListSize capacity, gA
     linkedList -> capacity = capacity;
     linkedList -> dataInfos_pt = dataInfos_pt;
 
-    linkedList -> nbDatas = 0;
+    linkedList -> nbNodes = 0;
     linkedList -> first = NULL;
 
     return linkedList;
