@@ -36,11 +36,13 @@ gArta_Stack main_Stack_create(const gArta_StackSize CAPACITY, gArta_DataInfos *D
     CHECK_ERROR(stack_create);
     printf("\n");
 
-    printf("\t-capacity: ");
-    printf("%d", CAPACITY);
+    printf("\t[capacity] ");
+    printf("%d ", CAPACITY);
     printf("\n");
 
-    printf("\t$ %p\n", (void*)(stack_create));
+    printf("\t> ");
+    printf("%p ", (void*)(stack_create));
+    printf("\n");
 
     return stack_create;
 }
@@ -51,7 +53,9 @@ gArta_Stack main_Stack_destroy(gArta_Stack STACK)
     CHECK_ERROR(stack_destroy);
     printf("\n");
 
-    printf("\t$ %p\n", (void*)(stack_destroy));
+    printf("\t> ");
+    printf("%p ", (void*)(stack_destroy));
+    printf("\n");
 
     return stack_destroy;
 }
@@ -64,8 +68,8 @@ int main_Stack_print(const gArta_Stack STACK)
     CHECK_ERROR(stack_print);
     printf("\n");
 
-    printf("\t>return: ");
-    printf("%d", stack_print);
+    printf("\t> ");
+    printf("%d ", stack_print);
     printf("\n");
 
     return stack_print;
