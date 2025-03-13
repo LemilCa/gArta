@@ -1,4 +1,4 @@
-#define FILE_TO_EXECUTE "main/gArta-Stack.c"
+#define FILE_TO_EXECUTE "main/gArta-Queue.c"
 
 
 #if defined(FILE_TO_EXECUTE)
