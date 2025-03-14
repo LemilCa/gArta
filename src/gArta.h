@@ -46,6 +46,7 @@ typedef enum {
     GARTA__TYPE__UNKNOWN = -1,
 
 /* Simple Types */
+    GARTA__TYPE__INTEGER,
 
 /* Structures */
     GARTA__TYPE__ARRAY,
@@ -140,6 +141,8 @@ const gArta_Error_Strings gArta_Error_strings [] = {
 const gArta_Type_Strings gArta_Type_strings [] = {
     { GARTA__TYPE__TEST   , "test"    },
     { GARTA__TYPE__UNKNOWN, "unknown" },
+
+    { GARTA__TYPE__INTEGER, "integer" },
 
     { GARTA__TYPE__ARRAY             , "array"              },
     { GARTA__TYPE__LINKED_LIST       , "linked list"        },

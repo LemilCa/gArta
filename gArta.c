@@ -1,4 +1,4 @@
-#define FILE_TO_EXECUTE "main/gArta-DoubleLinkedList.c"
+#define FILE_TO_EXECUTE "main/gArta-Integer.c"
 
 
 #if defined(FILE_TO_EXECUTE)

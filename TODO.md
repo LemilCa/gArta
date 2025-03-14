@@ -11,7 +11,7 @@
   - [X] Queue
   - [X] DoubleLinkedList
 - [ ] Simple Types
-  - [ ] Integer
+  - [X] Integer
   - [ ] Boolean
   - [ ] Character
   - [ ] Floating
