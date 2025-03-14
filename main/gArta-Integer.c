@@ -17,8 +17,9 @@ int main()
 {
     gArta_Integer integer = main_Integer_create(18);
     main_Integer_print(integer);
+    printf("\n");
 
-    integer = gArta_Integer_destroy(integer);
+    integer = main_Integer_destroy(integer);
     main_Integer_print(integer);
 
     return EXIT_SUCCESS;
@@ -38,6 +39,7 @@ gArta_Integer main_Integer_create(const int DATA)
 
     printf("\t> ");
     printf("%p ", (void*)(integer_create));
+    printf("\n");
 
     return integer_create;
 }
@@ -62,7 +64,7 @@ gArta_Integer main_Integer_destroy(gArta_Integer INTEGER)
 
 int main_Integer_print(const gArta_Integer INTEGER)
 {
-    printf("integer destroy: ");
+    printf("integer print: ");
     int integer_print = gArta_Integer_print(INTEGER);
     CHECK_ERROR(integer_print);
     printf("\n");

@@ -77,7 +77,7 @@ int gArta_Integer_print(const gArta_Integer integer)
 void gArta_Integer_malloc(gArta_Integer *integer_pt)
 {
     gArta_Integer integer = GARTA__MALLOC(sizeof(struct gArta_Integer));
-    if (integer == NULL) { gArta_Error_global_set(GARTA__ERROR__ALLOC); *integer_pt = integer; return; }
+    if (integer == NULL) { gArta_Error_global_set(GARTA__ERROR__ALLOC); *integer_pt = NULL; return; }
 
     *integer_pt = integer; return;
 }

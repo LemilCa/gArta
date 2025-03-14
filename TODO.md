@@ -12,7 +12,7 @@
   - [X] DoubleLinkedList
 - [ ] Simple Types
   - [X] Integer
-  - [ ] Boolean
+  - [X] Boolean
   - [ ] Character
   - [ ] Floating
   - [ ] Complex
