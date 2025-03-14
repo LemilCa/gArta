@@ -10,8 +10,6 @@
   - [X] Stack
   - [X] Queue
   - [X] DoubleLinkedList
-  - [ ] Tree
-  - [ ] BinaryTree
 - [ ] Simple Types
   - [ ] Integer
   - [ ] Boolean
