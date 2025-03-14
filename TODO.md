@@ -14,7 +14,7 @@
   - [X] Integer
   - [X] Boolean
   - [X] Character
-  - [ ] Floating
+  - [X] Floating
   - [ ] Complex
 - [ ] Complex Types
   - [ ] String

@@ -49,6 +49,7 @@ typedef enum {
     GARTA__TYPE__INTEGER,
     GARTA__TYPE__BOOLEAN,
     GARTA__TYPE__CHARACTER,
+    GARTA__TYPE__FLOATING,
 
 /* Structures */
     GARTA__TYPE__ARRAY,
@@ -147,6 +148,7 @@ const gArta_Type_Strings gArta_Type_strings [] = {
     { GARTA__TYPE__INTEGER  , "integer"   },
     { GARTA__TYPE__BOOLEAN  , "boolean"   },
     { GARTA__TYPE__CHARACTER, "character" },
+    { GARTA__TYPE__FLOATING , "floating"  },
 
     { GARTA__TYPE__ARRAY             , "array"              },
     { GARTA__TYPE__LINKED_LIST       , "linked list"        },
