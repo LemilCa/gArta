@@ -1,4 +1,4 @@
-#define FILE_TO_EXECUTE "main/gArta-Boolean.c"
+#define FILE_TO_EXECUTE "main/gArta-Character.c"
 
 
 #if defined(FILE_TO_EXECUTE)

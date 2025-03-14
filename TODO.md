@@ -13,7 +13,7 @@
 - [ ] Simple Types
   - [X] Integer
   - [X] Boolean
-  - [ ] Character
+  - [X] Character
   - [ ] Floating
   - [ ] Complex
 - [ ] Complex Types
