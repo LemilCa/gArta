@@ -57,8 +57,8 @@ typedef enum {
     GARTA__TYPE__STACK,
     GARTA__TYPE__QUEUE,
     GARTA__TYPE__DOUBLE_LINKED_LIST,
-/* Complex Types */
 
+/* Complex Types */
 } gArta_Type;
 
 typedef struct gArta_DataInfos gArta_DataInfos;
