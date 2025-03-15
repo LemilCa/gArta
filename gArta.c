@@ -1,4 +1,4 @@
-// #define FILE_TO_EXECUTE ""
+#define FILE_TO_EXECUTE "main/gArta-Floating.c"
 
 
 #if defined(FILE_TO_EXECUTE)
@@ -10,12 +10,13 @@
 
 #define GARTA__IMPLEMENTATION
 #include "src/gArta.h"
+#include "test/simple.h"
 
 
 int main()
 {
     printf("hello world!\n");
-
+    
     return EXIT_SUCCESS;
 }
 
