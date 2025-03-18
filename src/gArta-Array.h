@@ -15,10 +15,39 @@ typedef struct gArta_Array *gArta_Array;
 ////////////////////////////////////// Function Declarations //////////////////////////////////////
 
 gArta_Array gArta_Array_create(const gArta_ArraySize capacity, gArta_DataInfos *dataInfos_pt);
+gArta_Array gArta_Array_create_default(gArta_DataInfos *dataInfos_pt);
+gArta_Array gArta_Array_copy(const gArta_Array source);
 gArta_Array gArta_Array_destroy(gArta_Array array);
 
 
 int gArta_Array_print(const gArta_Array array);
+
+
+gArta_Data gArta_Array_get(const gArta_Array array, const gArta_ArraySize index);
+gArta_Data gArta_Array_getCopy(const gArta_Array array, const gArta_ArraySize index);
+
+
+gArta_Array gArta_Array_insert(gArta_Array array, const gArta_ArraySize index, const gArta_Data data);
+gArta_Array gArta_Array_delete(gArta_Array array, const gArta_ArraySize index);
+gArta_Array gArta_Array_remove(gArta_Array array, const gArta_Data data);
+
+gArta_Array gArta_Array_fill(gArta_Array array, const gArta_Data data);
+gArta_Array gArta_Array_erase(gArta_Array array);
+
+gArta_Array gArta_Array_forEach(gArta_Array array, gArta_Data (*action)(gArta_Data));
+gArta_Array gArta_Array_removeIf(gArta_Array array, bool (*filter)(const gArta_Data));
+
+
+bool gArta_Array_isEmpty(const gArta_Array array);
+bool gArta_Array_isFull(const gArta_Array array);
+gArta_ArraySize gArta_Array_nbDatas(const gArta_Array array);
+
+bool gArta_Array_contains(const gArta_Array array, const gArta_Data data);
+gArta_ArraySize gArta_Array_indexOf(const gArta_Array array, const gArta_Data data);
+gArta_ArraySize gArta_Array_lastIndexOf(const gArta_Array array, const gArta_Data data);
+
+
+gArta_Array gArta_Array_reverse(gArta_Array array);
 
 
 #endif /* !defined(GARTA__ARRAY__H) */
