@@ -15,9 +15,6 @@ const gArta_Test gArta_tests [] = {
     &(struct gArta_Test){ -12 },
     NULL
 }; const size_t gArta_tests_capacity = sizeof(gArta_tests) / sizeof(gArta_Test);
-
-gArta_Test gArta_Test_createDefault(void);
-gArta_Test gArta_Test_createRandom(void);
 gArta_Test gArta_Test_getRandom(void);
 
 gArta_Data gArta_Test_copy(const gArta_Data source_dt);
@@ -30,14 +27,6 @@ gArta_DataInfos gArta_Test_dataInfos(void);
 
 
 
-gArta_Test gArta_Test_createDefault(void)
-{
-    return &(struct gArta_Test){ 0 };
-}
-gArta_Test gArta_Test_createRandom(void)
-{
-    return &(struct gArta_Test){ rand() % 1000 - 500 };
-}
 gArta_Test gArta_Test_getRandom(void)
 {
     return gArta_tests[rand() % gArta_tests_capacity];
@@ -65,9 +54,9 @@ gArta_Data gArta_Test_destroy(gArta_Data test_dt)
 }
 int gArta_Test_print(const gArta_Data test_dt)
 {
-    gArta_Test test = (gArta_Test)(test_dt);
-    if (test == NULL) { return printf("*"); }
+    if (test_dt == NULL) { return printf("*"); }
 
+    gArta_Test test = (gArta_Test)(test_dt);
     return printf("%d", test -> data);
 }
 bool gArta_Test_same(const gArta_Data test_a_dt, const gArta_Data test_b_dt)

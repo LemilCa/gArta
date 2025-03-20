@@ -14,7 +14,10 @@ gArta_Array main_Array_destroy(gArta_Array ARRAY);
 int main_Array_print(const gArta_Array ARRAY);
 
 
-gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA);
+gArta_Array main_Array_insert(gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA);
+
+gArta_Array main_Array_fill(gArta_Array ARRAY, const gArta_Data DATA);
+gArta_Array main_Array_erase(gArta_Array ARRAY);
 
 
 gArta_ArraySize main_Array_nbDatas(const gArta_Array ARRAY);
@@ -26,20 +29,23 @@ int main()
     gArta_ArraySize CAPACITY = 10;
     gArta_DataInfos DATA_INFOS = gArta_Test_dataInfos();
 
-    gArta_Array array = main_Array_create(10, &DATA_INFOS);
+    gArta_Array array = main_Array_create(CAPACITY, &DATA_INFOS);
     main_Array_print(array);
     main_Array_nbDatas(array);
     printf("\n");
 
-    for (gArta_ArraySize index = 0; index < CAPACITY; index += 2) {
-        main_Array_insert(array, index, gArta_Test_createRandom());
-    } main_Array_print(array);
+    array = main_Array_fill(array, gArta_Test_getRandom());
+    main_Array_print(array);
+    main_Array_nbDatas(array);
+    printf("\n");
+
+    array = main_Array_erase(array);
+    main_Array_print(array);
     main_Array_nbDatas(array);
     printf("\n");
     
     array = main_Array_destroy(array);
     main_Array_print(array);
-    main_Array_nbDatas(array);
 
     return EXIT_SUCCESS;
 }
@@ -100,7 +106,7 @@ int main_Array_print(const gArta_Array ARRAY)
 }
 
 
-gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA)
+gArta_Array main_Array_insert(gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA)
 {
     printf("array insert: ");
     gArta_Array array_insert = gArta_Array_insert(ARRAY, INDEX, DATA);
@@ -116,7 +122,7 @@ gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize IND
     printf("\n");
 
     printf("\t[data] ");
-    gArta_Test_print(DATA);
+    gArta_Test_print((gArta_Test)(DATA));
     printf("\n");
 
     printf("\t> ");
@@ -124,6 +130,45 @@ gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize IND
     printf("\n");
 
     return array_insert;
+}
+
+gArta_Array main_Array_fill(gArta_Array ARRAY, const gArta_Data DATA)
+{
+    printf("array fill: ");
+    gArta_Array array_fill = gArta_Array_fill(ARRAY, DATA);
+    CHECK_ERROR(array_fill);
+    printf("\n");
+
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
+    printf("\n");
+
+    printf("\t[data] ");
+    gArta_Test_print(DATA);
+    printf("\n");
+
+    printf("\t> ");
+    printf("%p ", (void*)(array_fill));
+    printf("\n");
+
+    return array_fill;
+}
+gArta_Array main_Array_erase(gArta_Array ARRAY)
+{
+    printf("array erase: ");
+    gArta_Array array_erase = gArta_Array_erase(ARRAY);
+    CHECK_ERROR(array_erase);
+    printf("\n");
+
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
+    printf("\n");
+
+    printf("\t> ");
+    printf("%p ", (void*)(array_erase));
+    printf("\n");
+
+    return array_erase;
 }
 
 
