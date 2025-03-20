@@ -35,6 +35,7 @@ typedef enum {
     GARTA__ERROR__UNKNOWN = -1,
     GARTA__ERROR__NONE = 0,
 
+    GARTA__ERROR__NULL,
     GARTA__ERROR__ALLOC,
     GARTA__ERROR__PRINT,
 
@@ -134,6 +135,7 @@ const gArta_Error_Strings gArta_Error_strings [] = {
     { GARTA__ERROR__UNKNOWN      , "unknown"       },
     { GARTA__ERROR__NONE         , "none"          },
 
+    { GARTA__ERROR__NULL , "null"  },
     { GARTA__ERROR__ALLOC, "alloc" },
     { GARTA__ERROR__PRINT, "print" },
 

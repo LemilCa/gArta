@@ -14,16 +14,32 @@ gArta_Array main_Array_destroy(gArta_Array ARRAY);
 int main_Array_print(const gArta_Array ARRAY);
 
 
+gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA);
+
+
+gArta_ArraySize main_Array_nbDatas(const gArta_Array ARRAY);
+
+
 int main()
 {
-    gArta_DataInfos dataInfos = gArta_Test_dataInfos();
+    srand(time(NULL));
+    gArta_ArraySize CAPACITY = 10;
+    gArta_DataInfos DATA_INFOS = gArta_Test_dataInfos();
 
-    gArta_Array array = main_Array_create(10, &dataInfos);
+    gArta_Array array = main_Array_create(10, &DATA_INFOS);
     main_Array_print(array);
+    main_Array_nbDatas(array);
+    printf("\n");
+
+    for (gArta_ArraySize index = 0; index < CAPACITY; index += 2) {
+        main_Array_insert(array, index, gArta_Test_createRandom());
+    } main_Array_print(array);
+    main_Array_nbDatas(array);
     printf("\n");
     
     array = main_Array_destroy(array);
     main_Array_print(array);
+    main_Array_nbDatas(array);
 
     return EXIT_SUCCESS;
 }
@@ -81,5 +97,51 @@ int main_Array_print(const gArta_Array ARRAY)
     printf("\n");
 
     return array_print;
+}
+
+
+gArta_Array main_Array_insert(const gArta_Array ARRAY, const gArta_ArraySize INDEX, const gArta_Data DATA)
+{
+    printf("array insert: ");
+    gArta_Array array_insert = gArta_Array_insert(ARRAY, INDEX, DATA);
+    CHECK_ERROR(array_insert);
+    printf("\n");
+
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
+    printf("\n");
+
+    printf("\t[index] ");
+    printf("%d ", INDEX);
+    printf("\n");
+
+    printf("\t[data] ");
+    gArta_Test_print(DATA);
+    printf("\n");
+
+    printf("\t> ");
+    printf("%p ", (void*)(array_insert));
+    printf("\n");
+
+    return array_insert;
+}
+
+
+gArta_ArraySize main_Array_nbDatas(const gArta_Array ARRAY)
+{
+    printf("array nbDatas: ");
+    gArta_ArraySize array_nbDatas = gArta_Array_nbDatas(ARRAY);
+    CHECK_ERROR(array_nbDatas);
+    printf("\n");
+
+    printf("\t[array] ");
+    printf("%p ", (void*)(ARRAY));
+    printf("\n");
+
+    printf("\t> ");
+    printf("%d ", array_nbDatas);
+    printf("\n");
+
+    return array_nbDatas;
 }
 

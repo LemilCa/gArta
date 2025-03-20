@@ -131,6 +131,36 @@ int gArta_Array_print(const gArta_Array array)
 }
 
 
+gArta_Array gArta_Array_insert(gArta_Array array, const gArta_ArraySize index, const gArta_Data data)
+{
+    if (array == NULL) { gArta_Error_global_set(GARTA__ERROR__NULL); return NULL; }
+    if (index < 0) { gArta_Error_global_set(GARTA__ERROR__UNIMPLEMENTED); return array; }
+    if (index >= array -> capacity) { gArta_Error_global_set(GARTA__ERROR__OUT_OF_BOUNDS); return array; }
+
+    bool data_isNull;
+
+    data_isNull = array -> datas[index] == NULL;
+    array -> datas[index] = array -> dataInfos_pt -> destroy(array -> datas[index]);
+    if (!gArta_Error_global_isNone()) { return array; }
+    array -> nbDatas -= !data_isNull;
+
+    data_isNull = data == NULL;
+    array -> datas[index] = array -> dataInfos_pt -> copy(data);
+    if (!gArta_Error_global_isNone()) { return array; }
+    array -> nbDatas += !data_isNull;
+
+    return array;
+}
+
+
+gArta_ArraySize gArta_Array_nbDatas(const gArta_Array array)
+{
+    if (array == NULL) { gArta_Error_global_set(GARTA__ERROR__NULL); return 0; }
+
+    return array -> nbDatas;
+}
+
+
 
 void gArta_Array_malloc(gArta_Array *array_pt)
 {

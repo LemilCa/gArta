@@ -36,14 +36,10 @@ gArta_Test gArta_Test_createDefault(void)
 }
 gArta_Test gArta_Test_createRandom(void)
 {
-    srand(time(NULL));
-
     return &(struct gArta_Test){ rand() % 1000 - 500 };
 }
 gArta_Test gArta_Test_getRandom(void)
 {
-    srand(time(NULL));
-
     return gArta_tests[rand() % gArta_tests_capacity];
 }
 
