@@ -4,6 +4,6 @@
 
 int main()
 {
-    gArta_helloWorld();
+    
     return EXIT_SUCCESS;
 }
